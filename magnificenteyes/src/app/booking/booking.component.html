@@ -1,0 +1,59 @@
+<!-- BOOKING -->
+<section id="booking" class="module bg-dark-90">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h2 class="font-serif">Need to schedule? Got booking inquiries? Get in touch.</h2>
+				<br>
+				<form #bookingInquiry="ngForm" (ngSubmit)="onSubmit()" novalidate>
+					<div class="form-group">
+						<label class="sr-only" for="fname">First name</label>
+						<input type="text" id="firstname" class="form-control" name="firstName" [(ngModel)]='inquiry.first_name' placeholder="First name*" required>
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="lname">Last name</label>
+						<input type="text" id="lname" class="form-control" name="lastName" [(ngModel)]='inquiry.last_name' placeholder="Last name*" required>
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="dphone">Day phone #</label>
+						<input type="text" id="dphone" class="form-control" name="dayPhone" [(ngModel)]='inquiry.day_phone_number' placeholder="(###)###-####*" required>
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="email">E-mail</label>
+						<input type="text" id="email" class="form-control" name="emailAddress" [(ngModel)]='inquiry.email_address' placeholder="Your E-mail*" required>
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="contact-times">Best time to be reached</label>
+						<select class="form-control" name="contactTimes" [(ngModel)]='inquiry.contact_time_id' required>
+							<option value="0" disabled hidden>Best time to be reached.</option>
+							<option *ngFor="let time of times" [ngValue]='time.contact_timeframe_id'>{{time.contact_timeframe_id}}, {{time.contact_timeframe}}</option>
+						</select>
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="subject">Type of booking desired.</label>
+						<select class="form-control" name="inquiryType" [(ngModel)]='inquiry.inquiry_type_id' required>
+							<option value="0" disabled hidden>Select a service type for request.</option>
+							<option *ngFor="let type of types" [ngValue]='type.inquiry_type_id'>{{type.inquiry_type_id}}, {{type.inquiry_type_name}}</option>
+						</select>
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" id="message" name="message" [(ngModel)]="inquiry.message" rows="7" placeholder="Message*" required data-validation-required-message="Briefly describe your event or list your service related questions."></textarea>
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="text-center">
+						<button [disabled]="!bookingInquiry.valid" type="submit" class="btn btn-block btn-d" value="Submit">Submit</button>
+					</div>
+				</form>
+				<!-- Ajax response -->
+					<div id="contact-response" class="ajax-response font-alt"></div>
+
+			</div>
+		</div><!-- .row -->
+	</div><!--- container -->
+</section>
