@@ -1,0 +1,99 @@
+<app-dashboard-menu>Loading...</app-dashboard-menu>
+<div class="container">
+  <div class="jumbotron">
+
+    <h4 *ngIf="auth.isAuthenticated()">
+      Group Types
+    </h4>
+
+    <h5 *ngIf="auth.isAuthenticated()">
+      Create, Modify, Remove group system policies.
+    </h5>
+
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+    </h4>
+
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="well bs-component">
+    <h5>Existing Groups</h5>
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>Group Id</th>
+          <th>Group Name</th>
+          <th>Group Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="well bs-component">
+    <h5>Create New Group Type</h5>
+    <form>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Group Type Name"
+      >
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Group Type Description"
+      >
+    </form>
+  </div>
+</div>
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="well bs-component">
+    <h5>Remove Group Type</h5>
+    <form>
+      <select
+        class="form-control"
+        size="1">
+        <option>Select group type to remove</option>
+      </select>
+    </form>
+  </div>
+</div>

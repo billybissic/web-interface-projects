@@ -1,0 +1,85 @@
+<app-dashboard-menu>Loading...</app-dashboard-menu>
+<div class="container">
+  <div class="jumbotron">
+
+    <h4 *ngIf="auth.isAuthenticated()">
+      Mailinglist Subscribers
+    </h4>
+
+
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+    </h4>
+
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-12 col-xs-offset-0">
+      <div class="well bs-component">
+        <h5>Modify Mailinglist Subscribers</h5>
+        <h5><i>Select mailing list entry to modify</i></h5>
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Birthday</th>
+              <th>Modify</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let mailingListEntry of mailingListEntries">
+              <td>{{mailingListEntry.entry_id}}</td>
+              <td>{{mailingListEntry.first_name}}</td>
+              <td>{{mailingListEntry.last_name}}</td>
+              <td>{{mailingListEntry.email}}</td>
+              <td>{{mailingListEntry.birthday}}</td>
+              <!--<td><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></td>-->
+              <td><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-12 col-xs-offset-0">
+      <div class="well bs-component">
+        <h5>Modify Mailinglist Settings</h5>
+        <h5><i>Select mailing list setting to modify</i></h5>
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Application Name</th>
+              <th>Setting Name</th>
+              <th>Setting Description</th>
+              <th>Setting Value</th>
+              <th>Last Changed</th>
+              <th>Changed By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let applicationSetting of applicationSettings">
+              <td>{{applicationSetting.applicationSettingsId}}</td>
+              <td>{{applicationSetting.applicationName}}</td>
+              <td>{{applicationSetting.applicationSettingName}}</td>
+              <td>{{applicationSetting.applicationSettingDescription}}</td>
+              <td>{{applicationSetting.applicationSettingValue}}</td>
+              <td>{{applicationSetting.lastChangedTimestamp}}</td>
+              <td>{{applicationSetting.lastModifiedUserid}}</td>
+              <!--<td><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></td>-->
+              <td><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

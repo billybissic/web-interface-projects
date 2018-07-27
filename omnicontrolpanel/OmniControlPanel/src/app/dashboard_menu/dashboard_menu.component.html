@@ -1,0 +1,88 @@
+<!--<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">-->
+<link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid" >
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Omni</a>
+    </div>
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
+          <ul class="nav navbar-nav">
+            <li dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()" *ngIf="auth.isAuthenticated()">
+              <a href dropdownToggle (click)="false"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+                <ul *dropdownMenu class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" routerLink="bookinginquiries">Booking Inquiries</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="mediaplayer">Media Player</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="photogallery">Photo Gallery</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="logconsole">Logging Console</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="eggdropmanager">Eggdrop Manager</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="neurocenter">Neuro Center</a>
+                  </li>
+                </ul>
+            </li>
+            <li *ngIf="auth.isAuthenticated()"><a href="#"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i><span class="badge">0</span></a></li>
+          </ul>
+          <div class="form-group navbar-nav navbar-right">
+            <form class="navbar-form navbar-right" role="search">
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Search"
+                *ngIf="auth.isAuthenticated()"
+              >
+
+              <button 
+                type="submit" 
+                class="btn btn-default"
+                *ngIf="auth.isAuthenticated()">
+                  <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+              </button>
+          
+              <button
+                class="btn btn-default"
+                routerLink="/">
+                  <i class="fa fa-home fa-lg" aria-hidden="true"></i>
+              </button>
+      
+              <button
+                class="btn btn-default"
+                *ngIf="auth.isAuthenticated()"
+                routerLink="profile">
+                   <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="btn btn-default"
+                *ngIf="auth.isAuthenticated()"
+                routerLink="dashboard">
+                  <i class="fa fa-tachometer fa-lg" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="btn btn-default"
+                *ngIf="!auth.isAuthenticated()"
+                (click)="auth.login()">
+                  <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="btn btn-default"
+                *ngIf="auth.isAuthenticated()"
+                (click)="auth.logout()">
+                  <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+      </div>    
+  </div>
+</nav>

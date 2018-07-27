@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="jumbotron">
+
+    <h4 *ngIf="auth.isAuthenticated()">
+      Applications
+    </h4>
+
+    <h5 *ngIf="auth.isAuthenticated()">
+      Add applications, services, widets to utilize Omni's capabilities.
+    </h5>
+
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+    </h4>
+
+  </div>
+</div>
+<div class="container" *ngIf="auth.isAuthenticated()">
+
+ <div class="well bs-component">
+    <h5>Register New Application</h5>
+    <form>
+      <input 
+        type="text"
+        class="form-control"
+        placeholder="Application Name"
+      >
+      <input 
+        type="text"
+        class="form-control"
+        placeholder="Application Description"
+      >
+      <select
+        class="form-control"
+        size="1"
+      >
+      <option>Application Type</option>
+      </select>
+      <select
+        class="form-control"
+        size="1"
+      >
+      <option>Application Security Type</option>
+      </select>
+      <input
+        type="text"
+        class="form-control"
+        readonly
+      >
+    </form>
+  </div>
+
+  <div class="well bs-component">
+    <h5>Remove Applications</h5>
+    <form>
+      <select
+        class="form-control"
+        size="1"
+      >
+        <option>Select existing application to remove</option>
+      </select>
+    </form>
+  </div>
+
+</div>

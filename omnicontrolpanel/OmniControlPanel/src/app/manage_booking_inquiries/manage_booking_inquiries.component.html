@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="jumbotron">
+
+    <h4 *ngIf="auth.isAuthenticated()">
+      Booking Inquiries
+    </h4>
+
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+    </h4>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-12 col-xs-offset-0">
+      <div class="well bs-component">
+        <h5>Booking Inquiry Entries</h5>
+        <h5><i>Select booking inquiry entry for more details.</i></h5>
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Primary Phone</th>
+              <th>Secondary Phone</th>
+              <th>Email</th>
+              <th>Preferred Contact Method</th>
+              <th>Service Type</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bookingInquiry of bookingInquiries">
+              <td>{{bookingInquiry.booking_inquiry_id}}</td>
+              <td>{{bookingInquiry.first_name}}</td>
+              <td>{{bookingInquiry.last_name}}</td>
+              <td>{{bookingInquiry.primary_phone}}</td>
+              <td>{{bookingInquiry.secondary_phone}}</td>
+              <td>{{bookingInquiry.email}}</td>
+              <td>{{bookingInquiry.preferred_contact}}</td>
+              <td>{{bookingInquiry.service_type_id}}</td>
+              <td><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

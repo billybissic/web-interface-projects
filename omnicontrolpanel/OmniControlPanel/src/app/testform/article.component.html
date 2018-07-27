@@ -1,0 +1,19 @@
+<h3>Article Details with Promise</h3>
+<ul>
+    <li *ngFor="let article of promiseArticles | async" >
+        Id: {{article.id}}, Title: {{article.title}}
+    </li>
+</ul>
+
+<h3>Article Details after "then" promise</h3>
+<ul>
+    <li *ngFor="let article of articles">
+        Id: {{article.id}}, Title: {{article.title}} 
+    </li>
+</ul>
+
+<h3>Artcles in select list</h3>
+<select ng-model="selectedArticle" size="5">
+    <option *ngFor="let article of articles" value="{{article.id}}">{{article.title}}</option>
+</select>
+<div *ngIf="errorMessage"> {{errorMessage}} </div>

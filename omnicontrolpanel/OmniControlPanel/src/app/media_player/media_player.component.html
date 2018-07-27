@@ -1,0 +1,136 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="jumbotron">
+
+        <h4 *ngIf="auth.isAuthenticated()">
+          Media Player
+        </h4>
+
+        <h4 *ngIf="!auth.isAuthenticated()">
+          You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+        </h4>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+
+  <div class="container">
+    <div class="row">
+      <nav class="col-sm-3" id="myScrollspy">
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="#section1">Section 1</a></li>
+          ...
+        </ul>
+      </nav>
+      <div class="col-sm-9">
+        <div id="section1"> 
+          <h1>Section 1</h1>
+          <p>Try to scroll this page and look at the navigation list while scrolling!</p>
+        </div> 
+        ...
+      </div>
+    </div>
+  </div>
+
+</body>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid" >
+    <div class="btn-toolbar" role="toolbar" aria-label="...">
+      <div class="btn-group dropup" role="group" aria-label="...">
+        <button
+          type="button"
+          class="btn btn-default dropdown-toggle" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false"
+        >
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <!-- Dropdown menu links -->
+          <li><a href="#">Settings</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Current Playlist</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Playlist Editor</a><li>
+        </ul>
+      </div>
+    <!--<div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
+      <ul class="nav navbar-nav">
+        <div class="btn-toolbar" role="toolbar" aria-label="...">-->
+          <div class="btn-group" role="group" aria-label="...">
+            <button 
+              type="button" 
+              class="btn btn-default"
+            >
+              <i class="fa fa-fast-backward fa-lg" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-default"
+            >
+              <i class="fa fa-backward fa-lg" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-default"
+            >
+              <i class="fa fa-play fa-lg" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-default"
+            >
+              <i class="fa fa-pause fa-lg" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-default"
+            >
+              <i class="fa fa-stop fa-lg" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-default"
+            >
+              <i class="fa fa-forward fa-lg" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-default"
+            >
+              <i class="fa fa-fast-forward fa-lg" aria-hidden="true"></i>
+            </button>
+          </div>
+        
+      <ul class="nav btn-group" role="group" aria-label="...">
+        <li>
+          <a>00:00:00:000</a>
+        </li>
+      </ul>
+      <div class="btn-group" role="group" aria-label="...">
+        <button
+          type="button"
+          class="btn btn-default"
+        >
+          <i class="fa fa-random fa-lg" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-default"
+        >
+          <i class="fa fa-repeat fa-lg" aria-hidden="true"></i>
+        </button>
+      </div>
+      
+      
+    </div>
+    </div>
+  
+</nav>

@@ -1,0 +1,140 @@
+<app-dashboard-menu>Loading...</app-dashboard-menu>
+<div class="container">
+  <div class="jumbotron">
+
+    <h4 *ngIf="auth.isAuthenticated()">
+      Application Settings
+    </h4>
+
+    <h5 *ngIf="auth.isAuthenticated()">
+      Manage application and service settings. Change anything from application initialization options, to application runtime options, and application states.
+    </h5>
+
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+    </h4>
+
+  </div>
+</div>
+
+ <div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="well bs-component">
+    <h5>View Existing Application Settings</h5>
+    <select
+      class="form-control"
+      size="1"
+    >
+    <option>Select an Existing Application</option>
+    </select>
+
+    <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th>Setting Id</th>
+                    <th>Setting Name</th>
+                    <th>Setting Description</th>
+                    <th>Setting Value</th>
+                    <th>Last Changed Timestamp</th>
+                    <th>Last Changed By</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                </tbody>
+              </table>
+  </div>
+
+  <div class="well bs-component">
+    <h5>Add New Application Setting</h5>
+    <form>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Application Setting Name"
+      >
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Application Setting Description"
+      >
+      <input
+        text="text"
+        class="form-control"
+        placeholder="Application Setting Value"
+      >
+    </form>
+  </div>
+  <div class="well bs-component">
+    <h5>Remove Application Setting</h5>
+    <form>
+      <select
+        class="form-control"
+        size="1"
+      >
+        <option>Select an existing application</option>
+      </select>
+      
+      <select
+        class="form-control"
+        size="1"
+      >
+        <option>Select an application setting to remove</option>
+      </select>
+    </form>
+  </div>
+</div>

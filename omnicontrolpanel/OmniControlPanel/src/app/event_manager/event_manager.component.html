@@ -1,0 +1,12 @@
+<app-dashboard-menu>Loading...</app-dashboard-menu>
+<div class="container">
+  <div class="jumbotron">
+    <div *ngIf="!auth.isAuthenticated()">
+      Manage Calendar Events
+    </div>
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+    </h4>
+
+  </div>
+</div>

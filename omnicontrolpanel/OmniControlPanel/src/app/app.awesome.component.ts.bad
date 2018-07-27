@@ -1,0 +1,15 @@
+// app.awesome.component.ts
+import { Component } from '@angular/core';
+@Component({
+
+   template: `<a scrollTo href="#main-section">Scroll to main section</a>
+        <button scrollTo scrollTargetSelector="#test-section">Scroll to test section</a>
+        <button scrollTo scrollableElementSelector="#container" scrollYTarget="0">Go top</a>
+        <!-- Further content here -->
+        <div id="container">
+            <section id="main-section">Bla bla bla</section>
+            <section id="test-section">Bla bla bla</section>
+        <div>`
+})
+export class AwesomeComponent {
+}

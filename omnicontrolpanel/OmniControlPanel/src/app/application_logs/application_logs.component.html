@@ -1,0 +1,100 @@
+<app-dashboard-menu>Loading...</app-dashboard-menu>
+<div class="container">
+  <div class="jumbotron">
+
+    <h4 *ngIf="auth.isAuthenticated()">
+      Application Logs
+    </h4>
+
+    <h5 *ngIf="auth.isAuthenticated()">
+      Manage errors, logging, execution modes, and etc for application, services, and widets to utilize Omni's capabilities.
+    </h5>
+
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+    </h4>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="well bs-component">
+<select
+      class="form-control"
+      size="1"
+    >
+    <option>Select an Application</option>
+    </select>
+
+    <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Log Type</th>
+                    <th>Log Entity</th>
+                    <th>Entity Message </th>
+                    <th>State Details</th>
+                    <th>Risks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                </tbody>
+              </table>
+  </div>
+</div>

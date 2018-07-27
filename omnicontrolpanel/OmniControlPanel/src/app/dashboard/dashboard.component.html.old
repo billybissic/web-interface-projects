@@ -1,0 +1,858 @@
+<!--<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">-->
+<link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid" >
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Omni</a>
+    </div>
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
+          <ul class="nav navbar-nav">
+            <li dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()" *ngIf="auth.isAuthenticated()">
+              <a href dropdownToggle (click)="false"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+                <ul *dropdownMenu class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" routerLink="bookinginquiries">Booking Inquiries</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="mediaplayer">Media Player</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="photogallery">Photo Gallery</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="logconsole">Logging Console</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="eggdropmanager">Eggdrop Manager</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="neurocenter">Neuro Center</a>
+                  </li>
+                </ul>
+            </li>
+            <li *ngIf="auth.isAuthenticated()"><a href="#"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i><span class="badge">0</span></a></li>
+          </ul>
+          <div class="form-group navbar-nav navbar-right">
+            <form class="navbar-form navbar-right" role="search">
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Search"
+                *ngIf="auth.isAuthenticated()"
+              >
+
+              <button 
+                type="submit" 
+                class="btn btn-default"
+                *ngIf="auth.isAuthenticated()">
+                  <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+              </button>
+          
+              <button
+                class="btn btn-default"
+                routerLink="/">
+                  <i class="fa fa-home fa-lg" aria-hidden="true"></i>
+              </button>
+      
+              <button
+                class="btn btn-default"
+                *ngIf="auth.isAuthenticated()"
+                routerLink="profile">
+                   <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="btn btn-default"
+                *ngIf="auth.isAuthenticated()"
+                routerLink="dashboard">
+                  <i class="fa fa-tachometer fa-lg" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="btn btn-default"
+                *ngIf="!auth.isAuthenticated()"
+                (click)="auth.login()">
+                  <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
+              </button>
+
+              <button
+                class="btn btn-default"
+                *ngIf="auth.isAuthenticated()"
+                (click)="auth.logout()">
+                  <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+      </div>    
+  </div>
+</nav>
+
+<section *ngIf="auth.isAuthenticated()">
+<accordion>
+  <accordion-group style="text-align:center"  heading="Manage Monitors">
+    <div class="row">
+       	    <div class="col-sm-12">
+         	    <div class="col-sm-3 et-icons">
+           	    <div style="text-align:center">
+             	    Performance Metrics
+                </div>
+              </div>
+              <div class="col-sm-3 et-cons">
+           	    <div style="text-align:center">
+                  Security Reminders
+                </div>
+              </div>
+              <div class="col-sm-3 et-icons">
+               	<div style="text-align:center">
+                  Scheduled Tasks
+                </div>
+              </div>
+              <div class="col-sm-3 et-icons">
+                <div style="text-align:center">
+                  Alerts/Errors/Warnings 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+           	<div class="col-sm-12">
+             	<div class="col-sm-3 et-icons">
+               	<div style="text-align:center">
+                  <i class="fa fa-area-chart fa-lg" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="col-sm-3 et-icons">
+               	<div style="text-align:center">
+                   <i class="fa fa-bell" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="col-sm-3 et-icons">
+              	<div style="text-align:center"><i class="fa fa-tasks fa-lg" aria-hidden="true"></i></div>
+              </div>
+              <div class="col-sm-3 et-icons">
+               	<div style="text-align:center">
+                   <i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+           	<div class="col-sm-12">
+             	<div class="col-sm-3 et-icons" layout-align="center center">
+               	<div style="text-align:center"><a href="manageSpeedMetrics">Manage</a></div>
+              </div>
+              <div class="col-sm-3 et-icons">
+               	<div style="text-align:center"><a href="manageSecurityReminders">Manage</a></div>
+              </div>
+              <div class="col-sm-3 et-icons">
+               	<div style="text-align:center"><a href="manageScheduledTasks">Manage</a></div>
+              </div>
+              <div class="col-sm-3 et-icons">
+               	<div style="text-align:center"><a href="manageAlerts">Manage</a></div>
+              </div>
+
+            </div>
+          </div>
+  </accordion-group>
+  <accordion-group style="text-align:center" heading="Manage Users & Groups">
+  
+    <div class="row">
+              <div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">Users</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">User Privileges</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">User Groups</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">Accounts</div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-user" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center"><span aria-hidden="true" class="icon-key"></span></div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-users fa-lg" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                	<div style="text-align:center">
+                    <i class="fa fa-id-card fa-lg" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a href="manageUsers">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="userprivileges">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="usergroups">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a href="manageAccounts">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+    <div class="row">
+              <div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">Privileges</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">Group Types</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">Group Privelages</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">Account Types</div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center"><span aria-hidden="true" class="icon-profile-male"></span></div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center"><span aria-hidden="true" class="icon-key"></span></div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center"><span aria-hidden="true" class="icon-lock"></span></div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                	<div style="text-align:center"><span aria-hidden="true" class="icon-strategy"></span></div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="privileges">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="grouptypes">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="groupprivileges">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a href="accounttypes">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+  </accordion-group>
+  <accordion-group style="text-align:center" heading="Manage Content">
+
+    <div class="row">
+              <div class="col-sm-12">
+               	<div class="col-sm-3">
+                 	<div style="text-align:center">
+                    Galleries
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    Articles
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                   	Images
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    Themes
+                 	</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+            	<div class="col-sm-12">
+                <div class="col-sm-3">
+                  <div style="text-align:center">
+                    <i class="fa fa-camera fa-lg" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                     <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                     <i class="fa fa-picture-o fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                     <i class="fa fa-paint-brush fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+               	<div class="col-sm-3">
+                 	<div style="text-align:center">
+                     <a routerLink="managegalleries">
+                        Manage
+                     </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    <a routerLink="blogmanager">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    <a href="manageImages">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                  <div style="text-align:center">
+                    <a href="manageThemes">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br><br>
+            <div class="row">
+              <div class="col-sm-12">
+               	<div class="col-sm-3">
+                 	<div style="text-align:center">
+                   	News Letters
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                     Comments/Captions
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    Calendar Events
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    Uploads
+                 	</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="col-sm-3">
+                  <div style="text-align:center">
+                    <i class="fa fa-newspaper-o fa-lg" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                     <i class="fa fa-comments-o fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    <i class="fa fa-calendar fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    <i class="fa fa-upload fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+             	<div class="col-sm-12">
+               	<div class="col-sm-3">
+                 	<div style="text-align:center">
+                    <a href="manageNewsLetters">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    <a href="manageCommentsCaptions">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    <a routerLink="eventmanager">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3">
+                 	<div style="text-align:center">
+                    <a href="manageUploads">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+              </div>
+            </div>
+
+            <br><br>
+
+            <div class="row">
+             	<div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Backups
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <div style="text-align:center">
+                    Mailinglist Subscribers
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <div style="text-align:cener">
+                    Media Data
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <div style="text-align:center">
+                    Media Containers
+                  </div>
+                </div>
+              </div>
+           	</div>
+
+            <div class="row">
+             	<div class="col-sm-12">
+              	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-download fa-lg" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">  
+                  <div style="text-align:center">
+                    <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
+                  </div>                          
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <div style="text-align:center">
+                    <i class="fa fa-database fa-lg" aria-hidden="true"></i>
+                  </div>                           
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <div style="text-align:center">
+                    <i class="fa fa-cubes fa-lg" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+           	</div>
+
+            <div class="row">
+             	<div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a href="manageBackups">
+                     Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <a routerLink="mailinglistsubscribermanager">
+                    Manage
+                  </a>                        
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <a routerLink="mediamanager">
+                  Manage
+                  </a>           
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <a routerLink="mediaconatinermanager">
+                    Manage
+                  </a>                        
+                </div>
+              </div>
+           	</div>
+
+  </accordion-group>
+  <accordion-group style="text-align:center" heading="Manage Market">
+
+    <div class="row">
+              <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Shipments
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Transactions
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Orders
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Gift Cards
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-truck fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-usd fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-shopping-basket fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-credit-card fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a href="manageShipments">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                	<div style="text-align:center">
+                    <a href="manageTransactions">
+                      Manage
+                    </a>
+                	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                	<div style="text-align:center">
+                    <a href="manageOrders">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a href="manageGiftCards">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+              </div>
+            </div>
+
+            <br><br>
+
+            <div class="row">
+             	<div class="col-sm-12">
+                 	<div class="col-sm-3 et-icons">
+                   	<div style="text-align:center">
+                       Inventory
+                   	</div>
+                  </div>
+                  <div class="col-sm-3 et-icons">
+                  	<div style="text-align:center">
+                      Customers
+                  	</div>
+                  </div>
+                  <div class="col-sm-3 et-icons">             
+                  </div>
+                  <div class="col-sm-3 et-icons">                      
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-cubes fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                  <div style="text-align:center">
+                     <i class="fa fa-briefcase fa-lg" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">                    
+                </div>
+                <div class="col-sm-3 et-icons">
+                </div>
+              </div>
+           	</div>
+            
+            <div class="row">
+             	<div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                	<div style="text-align:center">
+                    <a href="manageInventory">
+                      Manage
+                    </a>
+                	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a href="manageCustomers">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	
+                </div>
+              </div>
+           	</div>
+
+  </accordion-group>
+  <accordion-group style="text-align:center" heading="System Manager">
+     <div class="row">
+              <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Applications
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Application Settings
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Application Logs
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Application Availability
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-microchip fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-cogs fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-book fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="applications">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                	<div style="text-align:center">
+                    <a routerLink="applicationsettings">
+                      Manage
+                    </a>
+                	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                	<div style="text-align:center">
+                    <a routerLink="applicationlogs">
+                      Manage
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="applicationavailability">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+              </div>
+            </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     Language Manager
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+               	<div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-microchip fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-cogs fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                     <i class="fa fa-book fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                 	</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="languagemanager">
+                      Manage
+                    </a>
+                 	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                	<div style="text-align:center">
+                    <a routerLink="applicationsettings">
+                      
+                    </a>
+                	</div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                	<div style="text-align:center">
+                    <a routerLink="applicationlogs">
+                    
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-3 et-icons">
+                 	<div style="text-align:center">
+                    <a routerLink="applicationavailability">
+                      
+                    </a>
+                 	</div>
+                </div>
+              </div>
+            </div>
+  </accordion-group>
+</accordion>
+	
+</section>
+<h4 *ngIf="!auth.isAuthenticated()">
+  You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+</h4>

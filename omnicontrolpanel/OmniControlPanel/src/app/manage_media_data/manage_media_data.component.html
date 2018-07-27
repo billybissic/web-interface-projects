@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="jumbotron">
+
+    <h4 *ngIf="auth.isAuthenticated()">
+      Manage Media Data
+    </h4>
+
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+    </h4>
+
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-12 col-xs-offset-0">
+      <div class="well bs-component">
+        <h5>Caption Types</h5>
+        <h5><i>Select caption type to modify</i></h5>
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Caption Type Name</th>
+              <th>Caption Type Description</th>
+              <th>Modify</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let captionType of captionTypes">
+              <td>{{captionType.caption_type_id}}</td>
+              <td>{{captionType.caption_type_name}}</td>
+              <td>{{captionType.caption_type_description}}</td>
+              <!--<td><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></td>-->
+              <td><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

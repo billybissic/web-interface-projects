@@ -1,0 +1,56 @@
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CallbackComponent } from './callback/callback.component';
+import { MediaPlayerComponent } from './media_player/media_player.component';
+import { PhotoGalleryManagerComponent } from './photo_gallery_manager/photo_gallery_manager.component';
+import { LogConsoleComponent } from './log_console/log_console.component';
+import { BlogManagerComponent } from './blog_manager/blog_manager.component';
+import { EventManagerComponent } from './event_manager/event_manager.component';
+import { ApplicationSettingsComponent } from './application_settings/application_settings.component';
+import { ApplicationsComponent } from './applications/applications.component';
+import { ApplicationLogsComponent } from './application_logs/application_logs.component';
+import { UserGroupsComponent } from './user_groups/user_groups.component';
+import { PrivilegesComponent } from './privileges/privileges.component';
+import { UserPrivilegesComponent } from './user_privileges/user_privileges.component';
+import { GroupTypesComponent } from './group_types/group_types.component';
+import { GroupPrivilegesComponent } from './group_privileges/group_privileges.component';
+import { ManageGalleriesComponent } from './manage_galleries/manage_galleries.component';
+import { ThemeManagerComponent } from './theme_manager/theme_manager.component';
+import { ArticleComponent } from './testform/article.component';
+import { MailingListSubscribersComponent } from './manage_mailinglist_subscribers/manage_mailinglist_subscribers.component';
+import { BookingInquiriesComponent } from './manage_booking_inquiries/manage_booking_inquiries.component';
+import { LanguageManagerComponent } from './language_manager/language_manager.component';
+import { MediaDataManagerComponent } from './manage_media_data/manage_media_data.component';
+import { MediaContainerManagerComponent } from './manage_media_containers/manage_media_containers.component';
+//import { EggdropConsole } from './eggdropconsole/eg'
+
+export const ROUTES: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'callback', component: CallbackComponent },
+  { path: 'logconsole', component: LogConsoleComponent },
+  { path: 'mediaplayer', component: MediaPlayerComponent },
+  { path: 'photogallerymanager', component: PhotoGalleryManagerComponent },
+  { path: 'bookinginquiries', component: BookingInquiriesComponent },
+  /* dashboard routes */
+  { path: 'dashboard/blogmanager', component: BlogManagerComponent },
+  { path: 'dashboard/eventmanager', component: EventManagerComponent },
+  { path: 'dashboard/applicationsettings', component: ApplicationSettingsComponent },
+  { path: 'dashboard/applications', component: ApplicationsComponent },
+  { path: 'dashboard/applicationlogs', component: ApplicationLogsComponent },
+  { path: 'dashboard/mediamanager', component: MediaDataManagerComponent },
+  { path: 'dashboard/privileges', component: PrivilegesComponent },
+  { path: 'dashboard/usergroups', component: UserGroupsComponent },
+  { path: 'dashboard/userprivileges', component: UserPrivilegesComponent },
+  { path: 'dashboard/grouptypes', component: GroupTypesComponent },
+  { path: 'dashboard/groupprivileges', component: GroupPrivilegesComponent },
+  { path: 'dashboard/managegalleries', component: ManageGalleriesComponent },
+  { path: 'dashboard/thememanager', component: ThemeManagerComponent },
+  { path: 'dashboard/mailinglistsubscribermanager', component: MailingListSubscribersComponent },
+  { path: 'dashboard/mediaconatinermanager', component: MediaContainerManagerComponent},
+  { path: 'dashboard/languagemanager', component: LanguageManagerComponent },
+  { path: '**', redirectTo: '' }
+];

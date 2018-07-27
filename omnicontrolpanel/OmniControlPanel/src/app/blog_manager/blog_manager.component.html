@@ -1,0 +1,658 @@
+<app-dashboard-menu>Loading...</app-dashboard-menu>
+<nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs affix" *ngIf="auth.isAuthenticated()">
+  <ul class="nav bs-docs-sidenav">
+    <li role="presentation"><a href="#">Article Authors</a></li>
+    <li role="presentation"><a href="#">Article Categories</a></li>
+    <li role="presentation"><a href="#">Article Category Relationships</a></li>
+    <li role="presentation"><a href="#">Article Comments</a></li>
+    <li role="presentation"><a href="#">Article Images</a></li>
+    <li role="presentation"><a href="#">Article Posts</a></li>
+    <li role="presentation" class="active"><a href="#">Article Post Relationships</a></li>
+    <li role="presentation"><a href="#">Article Tags</a></li>
+    <li role="presentation"><a href="#">Article Users</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="jumbotron">
+
+        <h4 *ngIf="auth.isAuthenticated()">
+          Article Management
+        </h4>
+
+        <h5 *ngIf="auth.isAuthenticated()">
+          Manage everything. Blog articles, website posts, news articles, magazine articles, and etc.
+        </h5>
+
+        <h4 *ngIf="!auth.isAuthenticated()">
+          You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+        </h4>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-2">
+        <div class="well bs-component">
+        <h5>Start New Article Draft</h5>
+          <!-- form  -->
+				  <form name="newTag.addForm">
+           		<!--row-->
+  				  <div class="row">
+              <div class="col-xs-10 col-xs-offset-1" style="text-align:center">
+  							    <input 	type="text" 
+               					required 
+                        class="form-control input-sm">
+						  </div>
+            </div>
+            <!-- end row -->
+
+            <!--row-->
+  				  <div class="row">
+              <div class="col-xs-10 col-xs-offset-1" style="text-align:center">
+                
+  							  <input 	type="text" 
+               		  			required 
+                          class="form-control input-sm">
+                
+						  </div>
+            </div>
+            <!-- end row -->
+
+            <!-- row -->
+            <div class="row">
+              <!-- button column -->
+              <br>
+              <div class="col-xs-10 col-xs-offset-1" style="text-align:center">
+                <button type="button" 
+                 		    ng-disabled="newTag.addForm.$invalid"
+                        ng-click="newTag.createNewBlogTag()"
+                        class="btn btn-default">
+                      Create Draft
+                </button>
+                <button type="button" 
+                 		    ng-click="newTag.resetAddForm()"
+                        class="btn btn-default">
+                      Clear
+                </button>
+					    </div>
+              <!-- end button column -->
+            </div>
+            <!-- end row -->
+			    </form>
+          <!-- end form -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Article Authors</h5>
+        <form>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <h5>Articles</h5>
+              <h5><i> Choose an article to see it's author(s)</i></h5>
+      		    <select 
+    				    name="tagList"
+     				    size="10"
+                class="form-control"
+                required>
+                  <!--<option value="">Choose an article to see it's author(s)</option>-->
+                  <option *ngFor="let article of articles" value="{{article.id}}">{{article.title}}</option>
+                </select>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <h5>Authors</h5>
+      		    <select 
+    				    name="tagList"
+     				    size="10"
+                class="form-control"
+                required>
+                  <!--<option value="">Choose an article to see it's author(s)</option>
+                  <option *ngFor="let article of articles" value="{{article.id}}">{{article.title}}-->
+					    </select>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-3">
+         	    <button type="button" 
+             	  		  ng-disabled="newTag.defaultView2.$invalid" 
+                      ng-click="newTag.deleteUnassignedTag()"
+                      ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                      class="btn btn-default">
+               	      Modify Selected Article
+              </button>
+              <button type="button" 
+             	  	  	ng-disabled="newTag.defaultView2.$invalid" 
+                      ng-click="newTag.deleteUnassignedTag()"
+                      ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                      class="btn btn-default">
+             	          Delete Article 
+              </button>
+              <button type="button" 
+             	  		  ng-click="newTag.refreshTagView()"
+                      class="btn btn-default">
+               	        Refresh
+              </button>
+       	    </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Article Cateogories</h5>
+	      <form name="newTag.addForm">
+        <!--ng-class="{true: 'error'}[submitted && newTag.addForm.newTagName.$invalid]"> -->
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1" style="text-align:left">
+  		      <input 	type="text" 
+       			        required 
+        	          ng-model="newTag.newTagName"
+       	            class="form-control input-sm">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1" style="text-align:left">
+            <input type="text"
+                   id="selectedBlogTitleText"
+                   data-ng-model="selectedBlogTitleTextValue"
+                   class="form-control input-sm"
+                   readonly>
+          </div>
+        </div>
+      
+    	  <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <h5><i>Choose an article category</i></h5>
+      		    <select 
+    				    name="articleTagCategoryList"
+     				    size="10"
+                class="form-control"
+                required>
+                <!--<option value="">Choose an article category</option>-->
+                <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+			      </select>
+          </div>
+      </div>
+
+	    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" style="text-align:center">
+  	      <button type="button" 
+             		  ng-click="newTag.resetAddForm()"
+                  class="btn btn-default">
+                    Reset
+          </button>
+          <button type="button" 
+           			  ng-click="newTag.refreshTagView()"
+                  class="btn btn-default">
+             	      Refresh
+          </button>
+          <button type="button" 
+             		ng-disabled="newTag.addForm.$invalid"
+                ng-click="newTag.createNewBlogTag()"
+                class="btn btn-default">
+                  Add Category
+          </button>
+          <button type="button"
+                  class="btn btn-default">
+                    Update Category
+          </button>
+          <button type="button" 
+           			ng-disabled="newTag.defaultView2.$invalid" 
+                ng-click="newTag.deleteUnassignedTag()"
+                ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                class="btn btn-default">
+             	    Delete Article Category
+          </button>
+          <button type="button" 
+               		ng-click="newTag.cancelAdd()"
+                  class="btn btn-default">
+                    Cancel
+          </button> 
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Article Cateogory Relationships</h5>
+	      <form name="newTag.addForm">
+        <!--ng-class="{true: 'error'}[submitted && newTag.addForm.newTagName.$invalid]"> -->
+      
+    	  <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <h5><i>Choose an article category</i></h5>
+      		    <select 
+    				    name="articleTagCategoryList"
+     				    size="10"
+                class="form-control"
+                required>
+                <!--<option value="">Choose an article category</option>-->
+                <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+			      </select>
+          </div>
+      </div>
+      <div class="row">
+        <h5>Relationship Grid Goes Here</h5>
+      </div>
+	    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" style="text-align:center">
+  	      <button type="button" 
+             		  ng-click="newTag.resetAddForm()"
+                  class="btn btn-default">
+                    Reset
+          </button>
+          <button type="button" 
+           			  ng-click="newTag.refreshTagView()"
+                  class="btn btn-default">
+             	      Refresh
+          </button>
+          <button type="button" 
+             		ng-disabled="newTag.addForm.$invalid"
+                ng-click="newTag.createNewBlogTag()"
+                class="btn btn-default">
+                  Add Category
+          </button>
+          <button type="button"
+                  class="btn btn-default">
+                    Update Category
+          </button>
+          <button type="button" 
+           			ng-disabled="newTag.defaultView2.$invalid" 
+                ng-click="newTag.deleteUnassignedTag()"
+                ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                class="btn btn-default">
+             	    Delete Article Category
+          </button>
+          <button type="button" 
+               		ng-click="newTag.cancelAdd()"
+                  class="btn btn-default">
+                    Cancel
+          </button> 
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Comments</h5>
+        <form>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <h5><i>Choose an article</i></h5>
+      		    <select 
+    				    name="tagList"
+     				    size="10"
+                class="form-control"
+                required>
+             <!--<option value="">Choose an article</option>-->
+            <option *ngFor="let article of articles" value="{{article.id}}">{{article.title}}
+			   </select>
+        </div>
+      </div>
+      <br>
+      <div>
+        <h4><i>Grid goes here</i></h4>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-3">
+      	  <button type="button" 
+       	  		    ng-disabled="newTag.defaultView2.$invalid" 
+                  ng-click="newTag.deleteUnassignedTag()"
+                  ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                  class="btn btn-default">
+           	        Modify Selected Article
+          </button>
+          <button type="button" 
+         	  	  	ng-disabled="newTag.defaultView2.$invalid" 
+                  ng-click="newTag.deleteUnassignedTag()"
+                  ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                  class="btn btn-default">
+         	          Delete Article 
+          </button>
+          <button type="button" 
+         	  		  ng-click="newTag.refreshTagView()"
+                  class="btn btn-default">
+           	        Refresh
+          </button>
+     	  </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Article Images</h5>
+        <form>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <h5><i>Choose an article</i></h5>
+      		    <select 
+    				    name="tagList"
+     				    size="10"
+                class="form-control"
+                required>
+             <!--<option value="">Choose an article</option>-->
+            <option *ngFor="let article of articles" value="{{article.id}}">{{article.title}}
+			   </select>
+        </div>
+      </div>
+      <br>
+      <div>
+        <h4><i>Image Carousel Goes Here</i></h4>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-3">
+      	  <button type="button" 
+       	  		    ng-disabled="newTag.defaultView2.$invalid" 
+                  ng-click="newTag.deleteUnassignedTag()"
+                  ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                  class="btn btn-default">
+           	        Modify Selected Article
+          </button>
+          <button type="button" 
+         	  	  	ng-disabled="newTag.defaultView2.$invalid" 
+                  ng-click="newTag.deleteUnassignedTag()"
+                  ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                  class="btn btn-default">
+         	          Delete Article 
+          </button>
+          <button type="button" 
+         	  		  ng-click="newTag.refreshTagView()"
+                  class="btn btn-default">
+           	        Refresh
+          </button>
+     	  </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Article Posts</h5>
+        <form>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+      		    <select 
+    				    name="tagList"
+     				    size="10"
+                class="form-control"
+                required>
+                  <option value="">Choose an article</option>
+                  <option *ngFor="let article of articles" value="{{article.id}}">{{article.title}}
+					    </select>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-3">
+         	    <button type="button" 
+             	  		  ng-disabled="newTag.defaultView2.$invalid" 
+                      ng-click="newTag.deleteUnassignedTag()"
+                      ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                      class="btn btn-default">
+               	      Modify Selected Article
+              </button>
+              <button type="button" 
+             	  	  	ng-disabled="newTag.defaultView2.$invalid" 
+                      ng-click="newTag.deleteUnassignedTag()"
+                      ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                      class="btn btn-default">
+             	          Delete Article 
+              </button>
+              <button type="button" 
+             	  		  ng-click="newTag.refreshTagView()"
+                      class="btn btn-default">
+               	        Refresh
+              </button>
+       	    </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Article Post Relationships</h5>
+        <form>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+      		    <select 
+    				    name="tagList"
+     				    size="10"
+                class="form-control"
+                required>
+                  <option value="">Choose an article</option>
+                  <option *ngFor="let article of articles" value="{{article.id}}">{{article.title}}
+					    </select>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-3">
+         	    <button type="button" 
+             	  		  ng-disabled="newTag.defaultView2.$invalid" 
+                      ng-click="newTag.deleteUnassignedTag()"
+                      ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                      class="btn btn-default">
+               	      Modify Selected Article
+              </button>
+              <button type="button" 
+             	  	  	ng-disabled="newTag.defaultView2.$invalid" 
+                      ng-click="newTag.deleteUnassignedTag()"
+                      ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                      class="btn btn-default">
+             	          Delete Article 
+              </button>
+              <button type="button" 
+             	  		  ng-click="newTag.refreshTagView()"
+                      class="btn btn-default">
+               	        Refresh
+              </button>
+       	    </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Article Tags</h5>
+	      <form name="newTag.addForm">
+        <!--ng-class="{true: 'error'}[submitted && newTag.addForm.newTagName.$invalid]"> -->
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1" style="text-align:left">
+  		      <input 	type="text" 
+       			        required 
+        	          ng-model="newTag.newTagName"
+       	            class="form-control input-sm">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1" style="text-align:left">
+            <input type="text"
+                   id="selectedBlogTitleText"
+                   data-ng-model="selectedBlogTitleTextValue"
+                   class="form-control input-sm"
+                   readonly>
+          </div>
+        </div>
+    	  <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <h5><i>Choose an article tag</i></h5>
+      		    <select 
+    				    name="articleTagCategoryList"
+     				    size="10"
+                class="form-control"
+                required>
+                  <!--<option value="">Choose an article tag</option>-->
+                  <option *ngFor="let tag of tags" value="{{tag.id}}">{{tag.tag}}
+					    </select>
+            </div>
+        </div>
+
+	      <div class="row">
+          <div class="col-xs-10 col-xs-offset-1" style="text-align:center">
+  	        <button type="button" 
+               		  ng-click="newTag.resetAddForm()"
+                    class="btn btn-default">
+                      Reset
+            </button>
+            <button type="button" 
+             			ng-click="newTag.refreshTagView()"
+                  class="btn btn-default">
+               	    Refresh
+            </button>
+            <button type="button" 
+               		ng-disabled="newTag.addForm.$invalid"
+                  ng-click="newTag.createNewBlogTag()"
+                  class="btn btn-default">
+                    Add Tag
+            </button>
+            <button type="button"
+                    class="btn btn-default">
+                      Update Tag
+            </button>
+            <button type="button" 
+             			ng-disabled="newTag.defaultView2.$invalid" 
+                  ng-click="newTag.deleteUnassignedTag()"
+                  ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                  class="btn btn-default">
+               	    Delete Article Tag
+            </button>
+            <button type="button" 
+                 		ng-click="newTag.cancelAdd()"
+                    class="btn btn-default">
+                      Cancel
+            </button> 
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="auth.isAuthenticated()">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div class="well bs-component">
+        <h5>Modify Article Users</h5>
+	      <form name="newTag.addForm">
+        <!--ng-class="{true: 'error'}[submitted && newTag.addForm.newTagName.$invalid]"> -->
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1" style="text-align:left">
+  		      <input 	type="text" 
+       			        required 
+        	          ng-model="newTag.newTagName"
+       	            class="form-control input-sm">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1" style="text-align:left">
+            <input type="text"
+                   id="selectedBlogTitleText"
+                   data-ng-model="selectedBlogTitleTextValue"
+                   class="form-control input-sm"
+                   readonly>
+          </div>
+        </div>
+    	  <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <h5><i>Choose an article tag</i></h5>
+      		    <select 
+    				    name="articleTagCategoryList"
+     				    size="10"
+                class="form-control"
+                required>
+                  <!--<option value="">Choose an article tag</option>-->
+                  <option *ngFor="let tag of tags" value="{{tag.id}}">{{tag.tag}}
+					    </select>
+            </div>
+        </div>
+
+	      <div class="row">
+          <div class="col-xs-10 col-xs-offset-1" style="text-align:center">
+  	        <button type="button" 
+               		  ng-click="newTag.resetAddForm()"
+                    class="btn btn-default">
+                      Reset
+            </button>
+            <button type="button" 
+             			ng-click="newTag.refreshTagView()"
+                  class="btn btn-default">
+               	    Refresh
+            </button>
+            <button type="button" 
+               		ng-disabled="newTag.addForm.$invalid"
+                  ng-click="newTag.createNewBlogTag()"
+                  class="btn btn-default">
+                    Add Tag
+            </button>
+            <button type="button"
+                    class="btn btn-default">
+                      Update Tag
+            </button>
+            <button type="button" 
+             			ng-disabled="newTag.defaultView2.$invalid" 
+                  ng-click="newTag.deleteUnassignedTag()"
+                  ng-disabled="!!(newTag.defaultView2.unassignedTag.$valid)"
+                  class="btn btn-default">
+               	    Delete Article Tag
+            </button>
+            <button type="button" 
+                 		ng-click="newTag.cancelAdd()"
+                    class="btn btn-default">
+                      Cancel
+            </button> 
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+  
+  
