@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { BookingComponent } from './booking/booking.component';
 import { FooterComponent } from './footer/footer.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { HomeComponent } from './home/home.component';
+import { AnnouncmentComponent } from './annoucement/announcement.component';
+import { NavigationComponent } from './menu/menu.component';
+
 
 import { SubscriberService } from '../services/subscriber/subscriber.service';
 import { ContactTimeService } from '../services/booking_inquiry/contact_time.service';
@@ -18,7 +22,10 @@ import { InquiryService } from '../services/booking_inquiry/inquiry.service';
     AppComponent,
     BookingComponent,
     FooterComponent,
-    SubscribeComponent
+    SubscribeComponent,
+    HomeComponent,
+    NavigationComponent,
+    AnnouncmentComponent
   ],
   imports: [
     BrowserModule,
