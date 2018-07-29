@@ -1,19 +1,19 @@
 <div class="col-sm-6 col-sm-offset-2">
     <form #newSubscriber="ngForm" (ngSubmit)="onSubmit()" novalidate>
-        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{errorMessage}}</div>
-        <div class="form-group">
+       <!-- <div *ngIf="errorMessage" class="alert alert-danger" role="alert"></div>-->
+        <div [formGroup]="subscriberForm" class="form-group">
             <input type="hidden" name="flavor" id="ddm_flavor" value="subscribe"> 
             <input type="hidden" name="list"   id="ddm_list"   value="magnificent">
-            <label for="subscriber-first_name" >
-                <input type="text" class="form-control" name="firstname" id="firstname" valule="" placeholder="John (required)" maxlength="20" minlength="2" required [(ngModel)]='subscriber.first_name'>
+            <label for="subscriber-first_name">
+                <input type="text" formControlName="firstname" class="form-control" name="firstname" id="firstname" valule="" placeholder="John (required)" maxlength="20" minlength="2" required> <!--[(ngModel)]='subscriber.first_name'>-->
             </label>
-            <label for="subscriber-last_name" >
-                <input type="text" class="form-control" name="lastname" id="lastname" value="" placeholder="Doe (required)" maxlength="20" minlength="2" required [(ngModel)]='subscriber.last_name'>
+            <label for="subscriber-last_name">
+                <input type="text" formControlName="lastname" class="form-control" name="lastname" id="lastname" value="" placeholder="Doe (required)" maxlength="20" minlength="2" required> <!--[(ngModel)]='subscriber.last_name'>-->
             </label>
-            <label for="subscriber-subscriber_email" > 
-                <input type="text"  class="form-control" name="email" id="email" value="" placeholder="user@example.com (required)" required [(ngModel)]='subscriber.subscriber_email'>
+            <label for="subscriber-subscriber_email"> 
+                <input type="text"  formControlName="email" class="form-control" name="email" id="email" value="" placeholder="user@example.com (required)" required> <!-- [(ngModel)]='subscriber.subscriber_email'>-->
             </label>
-            <input [disabled]="!newSubscriber.valid" type="submit" class="btn btn-border-w" value="Subscribe" >
+            <input [disabled]="!subscriberForm.valid" type="submit" class="btn btn-border-w" value="Subscribe">
         </div>
     </form>
 </div>

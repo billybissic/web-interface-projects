@@ -10,7 +10,7 @@ import { ContactTime } from './contact_time';
 export class ContactTimeService {
    
     //serverUrl = "http://localhost:8080/BookingInquiryServices/"
-    serverUrl ="http://magnificenteyes.com:8080/bookinginquiry-service/BookingInquiryServices/"
+    serverUrl = "http://magnificenteyes.com:8080/bookinginquiry-service/BookingInquiryServices/"
     
     constructor(private http:Http) { }
 
